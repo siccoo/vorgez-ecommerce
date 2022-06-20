@@ -26,4 +26,19 @@ export class ProductService {
   async find(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).exec();
   }
+
+  async update(
+    id: string,
+    newName: string,
+    newPrice: number,
+    newDescription: string,
+  ): Promise<ProductDocument> {
+    const existingProduct = await this.find(id);
+
+    existingProduct.name = newName ?? existingProduct.name;
+    existingProduct.price = newPrice ?? existingProduct.price;
+    existingProduct.description = newDescription ?? existingProduct.description;
+
+    return existingProduct.save();
+  }
 }
