@@ -18,4 +18,8 @@ export class ProductService {
     const newProduct = new this.productModel({ name, price, description });
     return newProduct.save();
   }
+
+  async findAll(): Promise<ProductDocument[]> {
+    return this.productModel.find().exec();
+  }
 }
