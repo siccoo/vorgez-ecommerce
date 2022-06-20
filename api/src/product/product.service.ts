@@ -22,4 +22,8 @@ export class ProductService {
   async findAll(): Promise<ProductDocument[]> {
     return this.productModel.find().exec();
   }
+
+  async find(id: string): Promise<ProductDocument> {
+    return this.productModel.findById(id).exec();
+  }
 }
