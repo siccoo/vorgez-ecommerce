@@ -41,4 +41,8 @@ export class ProductService {
 
     return existingProduct.save();
   }
+
+  async delete(id: string) {
+    return this.productModel.deleteOne({ _id: id }).exec();
+  }
 }
