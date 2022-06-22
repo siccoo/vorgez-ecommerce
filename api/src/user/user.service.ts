@@ -17,4 +17,17 @@ export class UserService {
       email: user.email,
     };
   }
+
+  async create(
+    name: string,
+    email: string,
+    hashedPassword: string,
+  ): Promise<UserDocument> {
+    const newUser = new this.userModel({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    return newUser.save();
+  }
 }
