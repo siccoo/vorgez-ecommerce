@@ -12,5 +12,11 @@ export class AuthService {
     return bcrypt.hash(password, 12);
   }
 
-  async register(user: NewUserDTO): Promise<UserDetails> {}
+  async register(user: Readonly<NewUserDTO>): Promise<UserDetails | any> {
+    const { name, email, password } = user;
+
+    const existingUser = await this.userService.findByEmail(email);
+
+    if (existingUser) return 'Email taken';
+  }
 }
