@@ -23,4 +23,11 @@ export class AuthService {
     const newUser = await this.userService.create(name, email, hashedPassword);
     return this.userService._getUserDetails(newUser);
   }
+
+  async doesPasswordMatch(
+    password: string,
+    hashedPassword: string,
+  ): Promise<boolean> {
+    return bcrypt.compare(password, hashedPassword);
+  }
 }
