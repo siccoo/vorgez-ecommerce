@@ -30,4 +30,23 @@ export class AuthService {
   ): Promise<boolean> {
     return bcrypt.compare(password, hashedPassword);
   }
+
+  async validateUser(
+    email: string,
+    password: string,
+  ): Promise<UserDetails | null> {
+    const user = await this.userService.findByEmail(email);
+    const doesUserExist = !!user;
+
+    if (!doesUserExist) return null;
+
+    const doesPasswordMatch = await this.doesPasswordMatch(
+      password,
+      user.password,
+    );
+
+    if (!doesPasswordMatch) return null;
+
+    return this.userService._getUserDetails(user);
+  }
 }
