@@ -18,5 +18,9 @@ export class AuthService {
     const existingUser = await this.userService.findByEmail(email);
 
     if (existingUser) return 'Email taken';
+
+    const hashedPassword = await this.hashPassword(password);
+    const newUser = await this.userService.create(name, email, hashedPassword);
+    return this.userService._getUserDetails(newUser);
   }
 }
