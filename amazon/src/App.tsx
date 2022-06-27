@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />}  />
-          <Route path="/" element={<RegisterPage />}  />
-          <Route path="/" element={<SigninPage />}  />
+          <Route path="/register" element={<RegisterPage />}  />
+          <Route path="/signin" element={<SigninPage />}  />
         </Routes>
       </Router>
     </ThemeProvider>
