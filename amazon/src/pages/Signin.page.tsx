@@ -1,6 +1,8 @@
+import AuthLayer from "../features/auth/components/AuthLayer"
+
 const SigninPage = () => {
     return (
-      <div>Signin page</div>
+      <AuthLayer>Signin page</AuthLayer>
     )
   }
   

@@ -1,6 +1,11 @@
+import AuthLayer from "../features/auth/components/AuthLayer"
+import RegisterFormComponent from "../features/auth/components/RegisterForm.component"
+
 const RegisterPage = () => {
     return (
-      <div>Register page</div>
+      <AuthLayer>
+        <RegisterFormComponent />
+      </AuthLayer>
     )
   }
   
