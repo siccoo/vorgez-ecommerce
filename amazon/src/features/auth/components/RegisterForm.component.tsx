@@ -9,7 +9,13 @@ const RegisterFormComponent = () => {
           <Typography variant="h4" component="h1">Create account</Typography>
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="name">Your name</InputLabel>
           <TextField type="text" name="name" id="name" variant="outlined" size="small" />
-        </Grid>
+
+          <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="email">Email</InputLabel>
+          <TextField type="text" name="email" id="email" variant="outlined" size="small" />
+
+          <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="password">Password</InputLabel>
+          <TextField type="text" name="password" id="password" variant="outlined" size="small" />
+        </Grid> 
       </form>
     </Box>
   )
