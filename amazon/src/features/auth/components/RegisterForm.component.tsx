@@ -4,7 +4,10 @@ import { Box, Button, Grid, InputLabel, TextField, Typography } from '@mui/mater
 const RegisterFormComponent: FC = () => {
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    console.log("Clicked");
+
   }
 
   return (
@@ -24,7 +27,7 @@ const RegisterFormComponent: FC = () => {
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="confirmPassword">Re-enter password</InputLabel>
           <TextField type="text" name="confirmPassword" id="confirmPassword" variant="outlined" size="small" />
 
-          <Button type='submit'>Register</Button>
+          <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
         </Grid>
       </form>
     </Box>
