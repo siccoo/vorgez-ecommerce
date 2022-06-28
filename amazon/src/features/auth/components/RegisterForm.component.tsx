@@ -30,6 +30,20 @@ const RegisterFormComponent: FC = () => {
           <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
         </Grid>
       </form>
+
+      <div style={{ marginTop: '30px' }}>
+        <small>
+          <span>By creating an account, you agree to Amazon's</span>
+        </small>
+      </div>
+
+      <div>
+        <small>
+          <a href="#" style={{ textDecoration: 'none' }}>{' '}Conditions of use</a>{' '}
+          and {' '}
+          <a href="#" style={{ textDecoration: 'none' }}>Privacy policy</a>.
+        </small>
+      </div>
     </Box>
   )
 }
