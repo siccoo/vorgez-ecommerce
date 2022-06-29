@@ -54,8 +54,15 @@ const RegisterFormComponent: FC = () => {
           <Link to="/signin" style={{textDecoration: "none", color: "#0000ee"}}>Sign-in</Link>
         </small>
       </div>
+
+      <div>
+        <small>
+          Buying for work?
+          <a href="#" style={{ textDecoration: 'none' }}>{' '}Create a free business account</a>{' '}
+        </small>
+      </div>
     </Box>
   )
 }
 
-export default RegisterFormComponent
+export default RegisterFormComponent;
