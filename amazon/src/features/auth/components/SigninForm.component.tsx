@@ -39,15 +39,12 @@ const SigninFormComponent: FC = () => {
             </Box>
             <div style={{ marginTop: "16px" }}>
                 <Divider>
-                    <small style={{color: '#767676'}}>New to Amazon?</small>
+                    <small style={{ color: '#767676' }}>New to Amazon?</small>
                 </Divider>
 
-                <div style={{ marginTop: '30px' }}>
-                    <small>
-                        Already have an account?{" "}
-                        <Link to="/signin" style={{ textDecoration: "none", color: "#0000ee" }}>Sign-in</Link>
-                    </small>
-                </div>
+                <Link to="/register" style={{ textDecoration: "none", color: "#0000ee" }}>
+                    <Button variant='contained' style={{ width: "100%", marginTop: '12px', height: '31px', backgroundColor: '#f1f1f1', color: '#000000', textTransform: 'none' }}>Register</Button>
+                </Link>
             </div>
         </>
     )
