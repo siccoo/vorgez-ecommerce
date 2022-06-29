@@ -1,5 +1,6 @@
 import { FC, FormEvent } from 'react'
-import { Box, Button, Grid, InputLabel, TextField, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
+import { Link } from 'react-router-dom';
 
 const RegisterFormComponent: FC = () => {
 
@@ -42,6 +43,15 @@ const RegisterFormComponent: FC = () => {
           <a href="#" style={{ textDecoration: 'none' }}>{' '}Conditions of use</a>{' '}
           and {' '}
           <a href="#" style={{ textDecoration: 'none' }}>Privacy policy</a>.
+        </small>
+      </div>
+
+      <Divider sx={{marginTop: "36px", marginBottom: "36px"}}/>
+
+      <div style={{ marginTop: '30px' }}>
+        <small>
+          Already have an account?{" "}
+          <Link to="/signin" style={{textDecoration: "none", color: "#0000ee"}}>Sign-in</Link>
         </small>
       </div>
     </Box>
