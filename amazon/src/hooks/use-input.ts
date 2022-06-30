@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { Action } from "../shared/models/action.interface";
 import {
   InputActionType,
@@ -28,3 +29,9 @@ const inputReducer = (state: InputState, action: Action<InputActionType>) => {
       return { ...state };
   }
 };
+
+const useInput = () => {
+    const [{text, hasBeenTouched}, dispatch] = useReducer(inputReducer, initialInputState);
+
+    
+}
