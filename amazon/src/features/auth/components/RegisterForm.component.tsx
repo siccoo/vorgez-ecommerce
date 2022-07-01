@@ -1,8 +1,12 @@
 import { FC, FormEvent } from 'react'
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom';
+import useInput from '../../../hooks/input/use-input';
+import { validateNameLength } from '../../../shared/utils/validation/length';
 
 const RegisterFormComponent: FC = () => {
+
+  const { text, shouldDisplayError, textChangeHandler, inputBlurHandler, clearHandler } = useInput(validateNameLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,12 +50,12 @@ const RegisterFormComponent: FC = () => {
         </small>
       </div>
 
-      <Divider sx={{marginTop: "36px", marginBottom: "36px"}}/>
+      <Divider sx={{ marginTop: "36px", marginBottom: "36px" }} />
 
       <div style={{ marginTop: '30px' }}>
         <small>
           Already have an account?{" "}
-          <Link to="/signin" style={{textDecoration: "none", color: "#0000ee"}}>Sign-in</Link>
+          <Link to="/signin" style={{ textDecoration: "none", color: "#0000ee" }}>Sign-in</Link>
         </small>
       </div>
 
