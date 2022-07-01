@@ -59,6 +59,7 @@ const useInput = (validatorFn?: ValidatorFn) => {
 
   return {
     text,
+    shouldDisplayError,
     textChangeHandler,
     inputBlurHandler,
     clearHandler,
