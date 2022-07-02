@@ -31,6 +31,14 @@ const RegisterFormComponent: FC = () => {
     clearHandler: passwordClearHandler
   } = useInput(validatePasswordLength);
 
+  const {
+    text: confirmPassword,
+    shouldDisplayError: confirmPasswordHasError,
+    textChangeHandler: confirmPasswordChangeHandler,
+    inputBlurHandler: confirmPasswordBlurHandler,
+    clearHandler: confirmPasswordClearHandler
+  } = useInput(validatePasswordLength);
+
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,33 +67,46 @@ const RegisterFormComponent: FC = () => {
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="email">Email</InputLabel>
           <TextField
-          value={email}
-          onChange={emailChangeHandler}
-          onBlur={emailBlurHandler}
-          error={emailHasError}
-          helperText={emailHasError ? "Enter a valid email" : ""} 
-          type="text" 
-          name="email" 
-          id="email" 
-          variant="outlined" 
-          size="small" />
+            value={email}
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
+            error={emailHasError}
+            helperText={emailHasError ? "Enter a valid email" : ""}
+            type="text"
+            name="email"
+            id="email"
+            variant="outlined"
+            size="small" />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="password">Password</InputLabel>
-          <TextField 
-          value={password}
-          onChange={passwordChangeHandler}
-          onBlur={passwordBlurHandler}
-          error={passwordHasError}
-          helperText={passwordHasError ? "Enter a valid password" : ""}
-          type="text" 
-          name="password" 
-          id="password" 
-          variant="outlined" 
-          size="small" 
-          placeholder='Minimum 6 characters' />
+          <TextField
+            value={password}
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            error={passwordHasError}
+            helperText={passwordHasError ? "Enter a valid password" : ""}
+            type="text"
+            name="password"
+            id="password"
+            variant="outlined"
+            size="small"
+            placeholder='Minimum 6 characters' />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="confirmPassword">Re-enter password</InputLabel>
-          <TextField type="text" name="confirmPassword" id="confirmPassword" variant="outlined" size="small" />
+          <TextField
+            value={confirmPassword}
+            onChange={confirmPasswordChangeHandler}
+            onBlur={confirmPasswordBlurHandler}
+            error={confirmPassword.length > 0 && password !== confirmPassword}
+            helperText={
+              confirmPassword.length > 0 && password
+                !== confirmPassword ? "Password must match" : ""
+            }
+            type="text"
+            name="confirmPassword"
+            id="confirmPassword"
+            variant="outlined"
+            size="small" />
 
           <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
         </Grid>
