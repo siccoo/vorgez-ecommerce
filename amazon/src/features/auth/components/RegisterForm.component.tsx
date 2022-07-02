@@ -2,7 +2,8 @@ import { FC, FormEvent } from 'react'
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom';
 import useInput from '../../../hooks/input/use-input';
-import { validateNameLength } from '../../../shared/utils/validation/length';
+import { validateNameLength, validatePasswordLength } from '../../../shared/utils/validation/length';
+import { validateEmail } from '../../../shared/utils/validation/email';
 
 const RegisterFormComponent: FC = () => {
 
@@ -13,6 +14,22 @@ const RegisterFormComponent: FC = () => {
     inputBlurHandler: nameBlurHandler,
     clearHandler: nameClearHandler
   } = useInput(validateNameLength);
+
+  const {
+    text: email,
+    shouldDisplayError: emailHasError,
+    textChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    clearHandler: emailClearHandler
+  } = useInput(validateEmail);
+
+  const {
+    text: password,
+    shouldDisplayError: passwordHasError,
+    textChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    clearHandler: passwordClearHandler
+  } = useInput(validatePasswordLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
