@@ -8,7 +8,7 @@ const RegisterFormComponent: FC = () => {
 
   const {
     text: name,
-    shouldDisplayError: nameDisplayError,
+    shouldDisplayError: nameHasError,
     textChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     clearHandler: nameClearHandler
@@ -31,7 +31,8 @@ const RegisterFormComponent: FC = () => {
             value={name}
             onChange={nameChangeHandler}
             onBlur={nameBlurHandler}
-            error={nameDisplayError}
+            error={nameHasError}
+            helperText={nameHasError ? "Enter your name" : ""}
             type="text"
             name="name"
             id="name"
