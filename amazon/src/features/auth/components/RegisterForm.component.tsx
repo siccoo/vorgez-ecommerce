@@ -6,12 +6,12 @@ import { validateNameLength } from '../../../shared/utils/validation/length';
 
 const RegisterFormComponent: FC = () => {
 
-  const { 
-    text: name, 
-    shouldDisplayError: nameDisplayError, 
-    textChangeHandler: nameChangeHandler, 
-    inputBlurHandler: nameBlurHandler, 
-    clearHandler: nameClearHandler 
+  const {
+    text: name,
+    shouldDisplayError: nameDisplayError,
+    textChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    clearHandler: nameClearHandler
   } = useInput(validateNameLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -27,7 +27,17 @@ const RegisterFormComponent: FC = () => {
         <Grid container direction="column" justifyContent="flex-start">
           <Typography variant="h4" component="h1">Create account</Typography>
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="name">Your name</InputLabel>
-          <TextField type="text" name="name" id="name" variant="outlined" size="small" />
+          <TextField
+            value={name}
+            onChange={nameChangeHandler}
+            onBlur={nameBlurHandler}
+            error={nameDisplayError}
+            type="text"
+            name="name"
+            id="name"
+            variant="outlined"
+            size="small"
+          />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="email">Email</InputLabel>
           <TextField type="text" name="email" id="email" variant="outlined" size="small" />
