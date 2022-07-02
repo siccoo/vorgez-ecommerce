@@ -6,7 +6,13 @@ import { validateNameLength } from '../../../shared/utils/validation/length';
 
 const RegisterFormComponent: FC = () => {
 
-  const { text, shouldDisplayError, textChangeHandler, inputBlurHandler, clearHandler } = useInput(validateNameLength);
+  const { 
+    text: name, 
+    shouldDisplayError: nameDisplayError, 
+    textChangeHandler: nameChangeHandler, 
+    inputBlurHandler: nameBlurHandler, 
+    clearHandler: nameClearHandler 
+  } = useInput(validateNameLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
