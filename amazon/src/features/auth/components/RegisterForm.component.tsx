@@ -58,10 +58,31 @@ const RegisterFormComponent: FC = () => {
           />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="email">Email</InputLabel>
-          <TextField type="text" name="email" id="email" variant="outlined" size="small" />
+          <TextField
+          value={email}
+          onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
+          error={emailHasError}
+          helperText={emailHasError ? "Enter a valid email" : ""} 
+          type="text" 
+          name="email" 
+          id="email" 
+          variant="outlined" 
+          size="small" />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="password">Password</InputLabel>
-          <TextField type="text" name="password" id="password" variant="outlined" size="small" placeholder='Minimum 6 characters' />
+          <TextField 
+          value={password}
+          onChange={passwordChangeHandler}
+          onBlur={passwordBlurHandler}
+          error={passwordHasError}
+          helperText={passwordHasError ? "Enter a valid password" : ""}
+          type="text" 
+          name="password" 
+          id="password" 
+          variant="outlined" 
+          size="small" 
+          placeholder='Minimum 6 characters' />
 
           <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="confirmPassword">Re-enter password</InputLabel>
           <TextField type="text" name="confirmPassword" id="confirmPassword" variant="outlined" size="small" />
