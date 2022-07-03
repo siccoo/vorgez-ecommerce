@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useInput from '../../../hooks/input/use-input';
 import { validateNameLength, validatePasswordLength } from '../../../shared/utils/validation/length';
 import { validateEmail } from '../../../shared/utils/validation/email';
+import { NewUser } from '../models/NewUser';
 
 const RegisterFormComponent: FC = () => {
 
@@ -42,7 +43,27 @@ const RegisterFormComponent: FC = () => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("Clicked");
+    if (password !== confirmPassword) return;
+
+    if (
+      nameHasError ||
+      emailHasError ||
+      passwordHasError ||
+      confirmPasswordHasError
+    ) return;
+
+    if(
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0 ||
+      confirmPassword.length === 0
+    ) return;
+
+    const newUser: NewUser = {
+      name, email, password
+    }
+
+    console.log("New User: ", newUser);
 
   }
 
@@ -58,7 +79,7 @@ const RegisterFormComponent: FC = () => {
             onBlur={nameBlurHandler}
             error={nameHasError}
             helperText={nameHasError ? "Enter your name" : ""}
-            type="text"
+            type="name"
             name="name"
             id="name"
             variant="outlined"
@@ -72,7 +93,7 @@ const RegisterFormComponent: FC = () => {
             onBlur={emailBlurHandler}
             error={emailHasError}
             helperText={emailHasError ? "Enter a valid email" : ""}
-            type="text"
+            type="email"
             name="email"
             id="email"
             variant="outlined"
@@ -85,7 +106,7 @@ const RegisterFormComponent: FC = () => {
             onBlur={passwordBlurHandler}
             error={passwordHasError}
             helperText={passwordHasError ? "Enter a valid password" : ""}
-            type="text"
+            type="password"
             name="password"
             id="password"
             variant="outlined"
@@ -102,7 +123,7 @@ const RegisterFormComponent: FC = () => {
               confirmPassword.length > 0 && password
                 !== confirmPassword ? "Password must match" : ""
             }
-            type="text"
+            type="password"
             name="confirmPassword"
             id="confirmPassword"
             variant="outlined"
