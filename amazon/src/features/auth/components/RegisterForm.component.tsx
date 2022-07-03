@@ -40,6 +40,13 @@ const RegisterFormComponent: FC = () => {
     clearHandler: confirmPasswordClearHandler
   } = useInput(validatePasswordLength);
 
+  const clearForm = () => {
+    nameClearHandler();
+    emailClearHandler();
+    passwordClearHandler();
+    confirmPasswordClearHandler();
+  }
+
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -64,6 +71,8 @@ const RegisterFormComponent: FC = () => {
     }
 
     console.log("New User: ", newUser);
+
+    clearForm();
 
   }
 
