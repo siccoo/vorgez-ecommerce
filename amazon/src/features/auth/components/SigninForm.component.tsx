@@ -1,13 +1,49 @@
 import { FC, FormEvent } from 'react'
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom';
+import useInput from '../../../hooks/input/use-input';
+import { validateEmail } from '../../../shared/utils/validation/email';
+import { validatePasswordLength } from '../../../shared/utils/validation/length';
 
 const SigninFormComponent: FC = () => {
+
+    const {
+        text: email,
+        shouldDisplayError: emailHasError,
+        textChangeHandler: emailChangeHandler,
+        inputBlurHandler: emailBlurHandler,
+        clearHandler: emailClearHandler
+    } = useInput(validateEmail);
+
+    const {
+        text: password,
+        shouldDisplayError: passwordHasError,
+        textChangeHandler: passwordChangeHandler,
+        inputBlurHandler: passwordBlurHandler,
+        clearHandler: passwordClearHandler
+    } = useInput(validatePasswordLength);
+
+    const clearForm = () => {
+        emailClearHandler();
+        passwordClearHandler();
+    }
 
     const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log("Clicked");
+        if (
+            emailHasError ||
+            passwordHasError
+        ) return;
+
+        if (
+            email.length === 0 ||
+            password.length === 0
+        ) return;
+
+        console.log("User: ", email, password);
+
+        clearForm();
 
     }
 
@@ -19,10 +55,32 @@ const SigninFormComponent: FC = () => {
                         <Typography variant="h4" component="h1">Sign-In</Typography>
 
                         <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="email">Email</InputLabel>
-                        <TextField type="text" name="email" id="email" variant="outlined" size="small" />
+                        <TextField
+                            value={email}
+                            onChange={emailChangeHandler}
+                            onBlur={emailBlurHandler}
+                            error={emailHasError}
+                            helperText={emailHasError ? "Enter a valid email" : ""}
+                            type="text"
+                            name="email"
+                            id="email"
+                            variant="outlined"
+                            size="small"
+                        />
 
                         <InputLabel sx={{ fontWeight: 500, marginTop: 1, color: "#000000" }} htmlFor="password">Password</InputLabel>
-                        <TextField type="text" name="password" id="password" variant="outlined" size="small" placeholder='Minimum 6 characters' />
+                        <TextField
+                            value={password}
+                            onChange={passwordChangeHandler}
+                            onBlur={passwordBlurHandler}
+                            error={passwordHasError}
+                            helperText={passwordHasError ? "Enter a valid password" : ""}
+                            type="text"
+                            name="password"
+                            id="password"
+                            variant="outlined"
+                            size="small"
+                            placeholder='Minimum 6 characters' />
 
                         <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Sign In</Button>
                     </Grid>
