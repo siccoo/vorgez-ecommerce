@@ -6,7 +6,9 @@ interface AsyncState {
     isError: boolean;
 }
 
-interface AuthState extends AsyncState 
+interface AuthState extends AsyncState {
+    
+}
 
 const initialState: 
 
