@@ -59,7 +59,7 @@ const RegisterFormComponent: FC = () => {
       confirmPasswordHasError
     ) return;
 
-    if(
+    if (
       name.length === 0 ||
       email.length === 0 ||
       password.length === 0 ||
