@@ -26,7 +26,7 @@ const initialState: AuthState = {
 };
 
 export const register = createAsyncThunk(
-  'auth/register',
+  "auth/register",
   async (user: NewUser, thunkAPI) => {
     try {
       return authService.register(user);
@@ -37,9 +37,15 @@ export const register = createAsyncThunk(
 );
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // REGISTER
@@ -49,13 +55,13 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload
+        state.user = action.payload;
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false;
         state.isSuccess = false;
-        state.user = null
-      })
+        state.user = null;
+      });
   },
 });
 
