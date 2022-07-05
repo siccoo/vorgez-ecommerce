@@ -5,46 +5,48 @@ import { NewUser } from "./models/NewUser";
 import { authService } from "./services/auth.service";
 
 interface AsyncState {
-    isLoading: boolean;
-    isSuccess: boolean;
-    isError: boolean;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
 }
 
 interface AuthState extends AsyncState {
-    user?: DisplayUser;
-    jwt?: Jwt;
-    isAuthenticated?: boolean
+  user?: DisplayUser;
+  jwt?: Jwt;
+  isAuthenticated?: boolean;
 }
 
 const initialState: AuthState = {
-    user: null,
-    jwt: null,
-    isAuthenticated: false,
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-}
+  user: null,
+  jwt: null,
+  isAuthenticated: false,
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+};
 
 export const register = createAsyncThunk(
-    'auth/register',
-    async (user: NewUser, thunkAPI) => {
-        try {
-            return authService.register(user);
-        } catch (error) {
-            return thunkAPI.rejectWithValue('Unable to register!')
-        }
+  'auth/register',
+  async (user: NewUser, thunkAPI) => {
+    try {
+      return authService.register(user);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to register!");
     }
-)
+  }
+);
 
 export const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
+  name: 'auth',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // REGISTER
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
+      });
+  },
+});
 
-    },
-    extraReducers: (builder) => {
-        builder.
-        // REGISTER
-        addCase()
-    },
-})
+export default authSlice.reducer;
