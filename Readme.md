@@ -1,4 +1,4 @@
-#Amazon Clone with React, Redux, NestJS, Mongo and Stripe
+# Amazon Clone with React, Redux, NestJS, Mongo and Stripe
 
 The Mongo database uses **Docker**
 
