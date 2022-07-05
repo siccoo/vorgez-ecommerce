@@ -5,6 +5,7 @@ import useInput from '../../../hooks/input/use-input';
 import { validateNameLength, validatePasswordLength } from '../../../shared/utils/validation/length';
 import { validateEmail } from '../../../shared/utils/validation/email';
 import { NewUser } from '../models/NewUser';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux/hooks';
 
 const RegisterFormComponent: FC = () => {
 
@@ -46,6 +47,10 @@ const RegisterFormComponent: FC = () => {
     passwordClearHandler();
     confirmPasswordClearHandler();
   }
+
+  const dispatch = useAppDispatch();
+
+  const { isLoading, isSuccess, isError } = useAppSelector((state) => state.auth);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
