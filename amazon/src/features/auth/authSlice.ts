@@ -26,7 +26,13 @@ const initialState: AuthState = {
 
 export const register = createAsyncThunk(
     'auth/register',
-    async (user: NewUser, thunkAPI)
+    async (user: NewUser, thunkAPI) => {
+        try {
+            
+        } catch (error) {
+            return thunkAPI.rejectWithValue('Unable to register!')
+        }
+    }
 )
 
 export const authSlice = createSlice({
@@ -36,6 +42,8 @@ export const authSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        
+        builder.
+        // REGISTER
+        addCase()
     },
 })
