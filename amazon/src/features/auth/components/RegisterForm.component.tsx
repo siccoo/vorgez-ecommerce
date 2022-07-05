@@ -1,4 +1,4 @@
-import { FC, FormEvent } from 'react'
+import { FC, FormEvent, useEffect } from 'react'
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../../../hooks/input/use-input';
@@ -6,7 +6,7 @@ import { validateNameLength, validatePasswordLength } from '../../../shared/util
 import { validateEmail } from '../../../shared/utils/validation/email';
 import { NewUser } from '../models/NewUser';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux/hooks';
-import { register } from '../authSlice';
+import { register, reset } from '../authSlice';
 
 const RegisterFormComponent: FC = () => {
 
@@ -51,9 +51,17 @@ const RegisterFormComponent: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { isLoading, isSuccess, isError } = useAppSelector((state) => state.auth);
+  const { isLoading, isSuccess } = useAppSelector((state) => state.auth);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(reset());
+      clearForm();
+      navigate('/signin')
+    }
+  }, [isSuccess, dispatch])
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
