@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DisplayUser } from "./models/DisplayUser.interface";
 import { Jwt } from "./models/Jwt";
 import { NewUser } from "./models/NewUser";
+import { authService } from "./services/auth.service";
 
 interface AsyncState {
     isLoading: boolean;
@@ -28,7 +29,7 @@ export const register = createAsyncThunk(
     'auth/register',
     async (user: NewUser, thunkAPI) => {
         try {
-            
+            return authService.register(user);
         } catch (error) {
             return thunkAPI.rejectWithValue('Unable to register!')
         }
