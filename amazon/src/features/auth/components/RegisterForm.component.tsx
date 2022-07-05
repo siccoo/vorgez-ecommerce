@@ -1,11 +1,12 @@
 import { FC, FormEvent } from 'react'
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../../../hooks/input/use-input';
 import { validateNameLength, validatePasswordLength } from '../../../shared/utils/validation/length';
 import { validateEmail } from '../../../shared/utils/validation/email';
 import { NewUser } from '../models/NewUser';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux/hooks';
+import { register } from '../authSlice';
 
 const RegisterFormComponent: FC = () => {
 
@@ -52,6 +53,8 @@ const RegisterFormComponent: FC = () => {
 
   const { isLoading, isSuccess, isError } = useAppSelector((state) => state.auth);
 
+const navigate = useNavigate();
+
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -75,9 +78,11 @@ const RegisterFormComponent: FC = () => {
       name, email, password
     }
 
-    console.log("New User: ", newUser);
+    dispatch(register(newUser));
 
-    clearForm();
+    // console.log("New User: ", newUser);
+
+    // clearForm();
 
   }
 
