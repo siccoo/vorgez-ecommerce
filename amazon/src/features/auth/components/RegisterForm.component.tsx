@@ -1,5 +1,5 @@
 import { FC, FormEvent, useEffect } from 'react'
-import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Divider, Grid, InputLabel, TextField, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../../../hooks/input/use-input';
 import { validateNameLength, validatePasswordLength } from '../../../shared/utils/validation/length';
@@ -93,6 +93,8 @@ const RegisterFormComponent: FC = () => {
     // clearForm();
 
   }
+
+  if(isLoading) return <CircularProgress/>
 
   return (
     <Box sx={{ padding: 2, border: 1, borderColor: "#CCCCCC", width: "350px", marginTop: 2 }}>
