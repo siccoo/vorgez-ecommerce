@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 import { DisplayUser } from "./models/DisplayUser.interface";
 import { Jwt } from "./models/Jwt";
 import { NewUser } from "./models/NewUser";
@@ -65,6 +66,10 @@ export const authSlice = createSlice({
   },
 });
 
-export const {reset} = authSlice.actions;
+export const { reset } = authSlice.actions;
+
+export const selectedUser = (state: RootState) => {
+  return state.auth;
+};
 
 export default authSlice.reducer;
