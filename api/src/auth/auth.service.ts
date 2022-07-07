@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { ExistingUserDTO } from 'src/user/dtos/exist-user.dtos';
@@ -65,5 +65,14 @@ export class AuthService {
 
     const jwt = await this.jwtService.signAsync({ user });
     return { token: jwt };
+  }
+
+  async verifyJwt(jwt: string): Promise<{ exp }> {
+    try {
+      const { exp } = await this.jwtService.verifyAsync(jwt);
+      return { exp };
+    } catch (error) {
+      throw new HttpException('Invalid JWT', HttpStatus.UNAUTHORIZED);
+    }
   }
 }
