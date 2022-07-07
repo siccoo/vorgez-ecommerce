@@ -94,7 +94,7 @@ const RegisterFormComponent: FC = () => {
 
   }
 
-  if(isLoading) return <CircularProgress/>
+  if(isLoading) return <CircularProgress sx={{marginTop: "64px", color: "primary"}}/>
 
   return (
     <Box sx={{ padding: 2, border: 1, borderColor: "#CCCCCC", width: "350px", marginTop: 2 }}>
