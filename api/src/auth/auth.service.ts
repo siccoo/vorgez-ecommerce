@@ -22,7 +22,11 @@ export class AuthService {
 
     const existingUser = await this.userService.findByEmail(email);
 
-    if (existingUser) return 'Email taken';
+    if (existingUser)
+      throw new HttpException(
+        'An account with that email already exists',
+        HttpStatus.CONFLICT,
+      );
 
     const hashedPassword = await this.hashPassword(password);
     const newUser = await this.userService.create(name, email, hashedPassword);
@@ -61,13 +65,14 @@ export class AuthService {
     const { email, password } = existingUser;
     const user = await this.validateUser(email, password);
 
-    if (!user) return null;
+    if (!user)
+      throw new HttpException('Credentials invalid!', HttpStatus.UNAUTHORIZED);
 
     const jwt = await this.jwtService.signAsync({ user });
     return { token: jwt };
   }
 
-  async verifyJwt(jwt: string): Promise<{ exp }> {
+  async verifyJwt(jwt: string): Promise<{ exp: number }> {
     try {
       const { exp } = await this.jwtService.verifyAsync(jwt);
       return { exp };
