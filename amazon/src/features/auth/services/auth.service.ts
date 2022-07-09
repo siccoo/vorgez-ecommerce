@@ -31,9 +31,14 @@ const login = async (user: LoginUser): Promise<Jwt> => {
   return response.data;
 };
 
+const logout = (): void => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('jwt')
+}
+
 export const authService = {
   register,
   login,
-  // logout,
+  logout,
   // verifyJwt
 };
