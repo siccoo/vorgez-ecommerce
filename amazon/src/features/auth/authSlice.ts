@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { DisplayUser } from "./models/DisplayUser.interface";
 import { Jwt } from "./models/Jwt";
+import { LoginUser } from "./models/LoginUser.interface";
 import { NewUser } from "./models/NewUser";
 import { authService } from "./services/auth.service";
 
-const storedUser: string | null = localStorage.getItem('user');
+const storedUser: string | null = localStorage.getItem("user");
 const user: DisplayUser | null = !!storedUser ? JSON.parse(storedUser) : null;
 
-const storedJwt: string | null = localStorage.getItem('jwt');
+const storedJwt: string | null = localStorage.getItem("jwt");
 const jwt: Jwt = !!storedJwt ? JSON.parse(storedJwt) : null;
 
 interface AsyncState {
@@ -43,6 +44,17 @@ export const register = createAsyncThunk(
   }
 );
 
+export const login = createAsyncThunk(
+  "auth/login",
+  async (user: LoginUser, thunkAPI) => {
+    try {
+      return authService.login(user);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to login!");
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -68,6 +80,23 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.user = null;
+      })
+
+      // LOGIN
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.jwt = action.payload;
+        state.isAuthenticated = true;
+      })
+      .addCase(login.rejected, (state) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.user = null;
+        state.isAuthenticated = false;
       });
   },
 });
