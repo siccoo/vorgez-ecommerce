@@ -55,6 +55,21 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await authService.logout();
+});
+
+export const verifyJwt = createAsyncThunk(
+  "auth/verify-jwt",
+  async (jwt: string, thunkAPI) => {
+    try {
+      return authService.verifyJwt(jwt);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Unable to verify!");
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -91,12 +106,14 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.jwt = action.payload;
         state.isAuthenticated = true;
+        state.user = action.payload;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
-        state.isSuccess = false;
+        state.isError = true;
         state.user = null;
         state.isAuthenticated = false;
+        state.user = null;
       });
   },
 });
