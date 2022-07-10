@@ -106,14 +106,34 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.jwt = action.payload;
         state.isAuthenticated = true;
-        state.user = action.payload;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         state.user = null;
         state.isAuthenticated = false;
+      })
+
+      // LOGOUT
+      .addCase(logout.fulfilled, (state) => {
         state.user = null;
+        state.jwt = null;
+        state.isAuthenticated = false;
+      })
+
+      // VERIFY-JWT
+      .addCase(verifyJwt.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(verifyJwt.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isAuthenticated = action.payload;
+      })
+      .addCase(verifyJwt.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isAuthenticated = false;
       });
   },
 });
