@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux/hooks';
 import { verifyJwt } from '../authSlice';
 
@@ -13,7 +14,7 @@ const PrivateRoute = ({ page }: { page: JSX.Element }) => {
         dispatch(verifyJwt(jwt.token));
     }, [jwt, isSuccess])
 
-    return isAuthenticated;
+    return isAuthenticated ? page : <Navigate replace to="/signin" />
 }
 
 export default PrivateRoute
