@@ -16,6 +16,11 @@ describe('Field length validation', () => {
             name = 'Jo'
             expect(validateNameLength(name)).toEqual(true);
         });
+
+        test('a name should pass length validation if it is more than 2 characters', () => {
+            name = 'Jon'
+            expect(validateNameLength(name)).toEqual(true);
+        });
     })
     
 
