@@ -2,7 +2,6 @@ import { validateEmail } from "./email";
 
 describe('Email validation', () => {
     let email = '';
-
     test('an empty input should not be valid', () => {
         expect(validateEmail(email)).toEqual(false);
     });
@@ -17,6 +16,11 @@ describe('Email validation', () => {
     });
 
     test('a valid email should pass validation', () => {
+        expect(validateEmail(email)).toEqual(false);
+    });
+
+    test('an invalid email should not pass validation', () => {
+        email = ''
         expect(validateEmail(email)).toEqual(false);
     });
 })
