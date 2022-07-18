@@ -7,20 +7,20 @@ describe('Email validation', () => {
     });
 
     test('it should have an @ symbol', () => {
-        email = '';
-        expect(email.includes('@')).toEqual(false);
+        email = 'chilaka@gmail.com';
+        expect(email.includes('@')).toEqual(true);
     });
 
     test('it should have a . symbol', () => {
-        expect(email.includes('.')).toEqual(false);
+        expect(email.includes('.')).toEqual(true);
     });
 
     test('a valid email should pass validation', () => {
-        expect(validateEmail(email)).toEqual(false);
+        expect(validateEmail(email)).toEqual(true);
     });
 
     test('an invalid email should not pass validation', () => {
-        email = ''
+        email = 'chilaka@gmail'
         expect(validateEmail(email)).toEqual(false);
     });
 })

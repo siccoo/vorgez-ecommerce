@@ -21,7 +21,27 @@ describe('Field length validation', () => {
             name = 'Jon'
             expect(validateNameLength(name)).toEqual(true);
         });
-    })
+    });
     
+    describe('Password field validation', () => {
+        let password = '';
+        test('a password should fail length validation if it is not set', () => {
+            expect(validatePasswordLength(password)).toEqual(false);
+        });
 
+        test('a password should fail length validation if it is less than 2 characters', () => {
+            password = 'J'
+            expect(validatePasswordLength(password)).toEqual(false);
+        });
+
+        test('a password should fail length validation if it is more than 20 characters', () => {
+            password = 'abcdefghijklmnopqrstuvwxy'
+            expect(validatePasswordLength(password)).toEqual(false);
+        });
+
+        test('a password should pass length validation if it is 6-20 characters', () => {
+            password = 'password'
+            expect(validatePasswordLength(password)).toEqual(true);
+        });
+    })
 })
