@@ -6,8 +6,8 @@ describe('Email validation', () => {
 
     beforeEach(() => {
         reducer(<SigninFormComponent />)
-        signInButton = screen.getByRole('button')
-    })
+        signInButton = screen.getByRole('button', { name: /sign-in/i });
+    });
     // test('an empty input should not be valid', () => {
     //     expect(validateEmail(email)).toEqual(false);
     // });
