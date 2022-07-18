@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import { render as rtlRender } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
@@ -21,5 +22,5 @@ function reducer(ui, {
 }
 
 export * from "@testing-library/react";
-export { render }
+export { reducer };
 
