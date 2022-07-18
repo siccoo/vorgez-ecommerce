@@ -47,10 +47,10 @@ const SigninFormComponent: FC = () => {
     }, [isSuccess, dispatch])
 
     useEffect(() => {
-      if(!isAuthenticated) return;
-      navigate('/')
+        if (!isAuthenticated) return;
+        navigate('/')
     }, [isAuthenticated])
-    
+
 
     const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -114,7 +114,20 @@ const SigninFormComponent: FC = () => {
                             size="small"
                             placeholder='Minimum 6 characters' />
 
-                        <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Sign In</Button>
+                        <Button
+                            disabled={!validatePasswordLength(password) || !validateEmail(email)}
+                            variant='contained'
+                            style={{
+                                marginTop: '16px',
+                                height: '31px',
+                                borderColor: "#a88734 #9c7e31 #846a29",
+                                backgroundColor: '#f0c14b',
+                                color: '#000000',
+                                textTransform: 'none'
+                            }}
+                            type='submit'
+                        >Sign In
+                        </Button>
                     </Grid>
                 </form>
 
