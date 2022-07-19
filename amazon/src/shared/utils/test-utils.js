@@ -9,7 +9,8 @@ function reducer(ui, {
     preloadedState,
     store = configureStore({ reducer: { auth: authReducer }, preloadedState }),
     ...renderOptions
-}) {
+} = {}
+) {
     function Wrapper({ children }) {
         return (
             <Provider store={store}>

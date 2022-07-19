@@ -126,7 +126,7 @@ const SigninFormComponent: FC = () => {
                                 textTransform: 'none'
                             }}
                             type='submit'
-                        >Sign In
+                        >Sign-In
                         </Button>
                     </Grid>
                 </form>
