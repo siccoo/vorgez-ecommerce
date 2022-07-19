@@ -12,4 +12,8 @@ describe('Sign-in Form', () => {
     test('The login button should be in the document', () => {
         expect(signInButton).toBeInTheDocument();
     });
+
+    test('The login button should be disabled', () => {
+        expect(signInButton).toBeDisabled();
+    });
 });
