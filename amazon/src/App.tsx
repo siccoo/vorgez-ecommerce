@@ -27,4 +27,12 @@ function App() {
 
 type CypressWindow = Window & typeof globalThis & { Cypress: any; store: any };
 
+const thisWindow = window as CypressWindow;
+
+if(thisWindow.Cypress) {
+  console.log("CYPRESS WINDOW");
+  
+  thisWindow.store = store;
+}
+
 export default App;
