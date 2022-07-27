@@ -160,7 +160,7 @@ const RegisterFormComponent: FC = () => {
             variant="outlined"
             size="small" />
 
-          <Button variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
+          <Button id='register-link' variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
         </Grid>
       </form>
 

@@ -24,4 +24,8 @@ describe('Auth (e2e)', () => {
       .should('deep.equal', initialAppState);
   });
 
+  it('should navigsate to sign-in upon registration', () => {
+    cy.get('#register-link').click();
+  })
+
 });
