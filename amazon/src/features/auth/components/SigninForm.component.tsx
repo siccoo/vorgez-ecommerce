@@ -115,6 +115,7 @@ const SigninFormComponent: FC = () => {
                             placeholder='Minimum 6 characters' />
 
                         <Button
+                            id="signin-btn"
                             disabled={!validatePasswordLength(password) || !validateEmail(email)}
                             variant='contained'
                             style={{
@@ -145,7 +146,7 @@ const SigninFormComponent: FC = () => {
                     <small style={{ color: '#767676' }}>New to Amazon?</small>
                 </Divider>
 
-                <Link to="/register" style={{ textDecoration: "none", color: "#0000ee" }}>
+                <Link id='register-link' to="/register" style={{ textDecoration: "none", color: "#0000ee" }}>
                     <Button variant='contained' style={{ width: "100%", marginTop: '12px', height: '31px', backgroundColor: '#f1f1f1', color: '#000000', textTransform: 'none' }}>Register</Button>
                 </Link>
             </div>

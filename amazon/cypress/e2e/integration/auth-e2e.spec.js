@@ -24,8 +24,18 @@ describe('Auth (e2e)', () => {
       .should('deep.equal', initialAppState);
   });
 
+  const randomInt = Math.floor(Math.random() * 100000);
+  const name = `user-${randomInt}`;
+  const email = `user-${randomInt}@hotmail.com`;
+  const password = 'password';
+
   it('should navigsate to sign-in upon registration', () => {
     cy.get('#register-link').click();
+
+    cy.get('#name').click().type(name);
+    cy.get('#email').click().type(email);
+    cy.get('#password').click().type(password);
+    cy.get('#confirmPassword').click().type(password);
   })
 
 });
