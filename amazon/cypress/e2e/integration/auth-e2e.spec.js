@@ -56,4 +56,13 @@ describe('Auth (e2e)', () => {
 
     cy.contains('#signin-btn', 'Sign-In').should('not.have.attr', 'disabled');
   });
+
+  it('should navigate to home page', () => {
+    cy.contains('#signin-btn', 'Sign-In').click();
+
+    cy.wait(500);
+
+    cy.url().should('not.include', 'signin');
+    cy.url().should('include', '/');
+  })
 });
