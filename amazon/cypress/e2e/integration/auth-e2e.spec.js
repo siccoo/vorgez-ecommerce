@@ -47,5 +47,13 @@ describe('Auth (e2e)', () => {
 
   it('Sign-in button should be disabled', () => {
     cy.contains('#signin-btn', 'Sign-In').should('have.attr', 'disabled');
-  })
+  });
+
+  it('Correct details should enable Sign-In button', () => {
+
+    cy.get('#email').click().type(email);
+    cy.get('#password').click().type(password);
+
+    cy.contains('#signin-btn', 'Sign-In').should('not.have.attr', 'disabled');
+  });
 });
