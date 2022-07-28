@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/await-async-utils */
 /* eslint-disable no-undef */
 describe('Auth (e2e)', () => {
   it('should load and redirect to /signin', () => {
@@ -36,6 +37,12 @@ describe('Auth (e2e)', () => {
     cy.get('#email').click().type(email);
     cy.get('#password').click().type(password);
     cy.get('#confirmPassword').click().type(password);
+
+    cy.get('#register-btn').click();
+
+    cy.wait(500);
+
+    cy.url().should('include', 'signin');
   })
 
 });
