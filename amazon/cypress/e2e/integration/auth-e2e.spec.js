@@ -43,6 +43,9 @@ describe('Auth (e2e)', () => {
     cy.wait(500);
 
     cy.url().should('include', 'signin');
-  })
+  });
 
+  it('Sign-in button should be disabled', () => {
+    cy.contains('#signin-btn', 'Sign-In').should('have.attr', 'disabled');
+  })
 });
