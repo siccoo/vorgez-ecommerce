@@ -8,3 +8,9 @@ const getProducts = async () => {
 
   return response;
 };
+
+const productService = {
+  getProducts,
+};
+
+export default productService;
