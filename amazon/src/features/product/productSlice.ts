@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { ProductDocument } from "../product/models/Product";
 import { Cart } from "./models/Cart";
@@ -25,6 +25,24 @@ const initialState: ProductState = {
   isError: false,
 };
 
+const modifyQtyByOne = (
+  cart: Cart,
+  selectedProduct: ProductDocument,
+  modificationType: "INCREMENT" | "DECREMENT"
+) => {
+  const previousCart = [...cart];
+
+  const productInCart = previousCart.find(
+    (product) => product._id === selectedProduct._id
+  );
+
+  let newCart = [];
+
+  if (!productInCart) {
+    previousCart.push({ ...selectedProduct, quantity: 1 });
+  }
+};
+
 export const getProducts = createAsyncThunk("product", async () => {
   try {
     return await productService.getProducts();
@@ -36,7 +54,24 @@ export const getProducts = createAsyncThunk("product", async () => {
 export const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    incrementProduct: (state, action: PayloadAction<ProductDocument>) => {
+      const modifiedCart = modifyQtyByOne(
+        state.cart,
+        action.payload,
+        "INCREMENT"
+      );
+      state.cart = modifiedCart;
+    },
+    decrementProduct: (state, action: PayloadAction<ProductDocument>) => {
+      const modifiedCart = modifyQtyByOne(
+        state.cart,
+        action.payload,
+        "DECREMENT"
+      );
+      state.cart = modifiedCart;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
@@ -51,8 +86,10 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.products = [];
-      })
+      });
   },
 });
+
+export const { incrementProduct, decrementProduct } = productSlice.actions;
 
 export default productSlice.reducer;
