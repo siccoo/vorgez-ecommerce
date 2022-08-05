@@ -53,9 +53,11 @@ const modifyQtyByOne = (
     if (productInCart.quantity === 0) {
       newCart = [...filteredCart];
     } else {
-      newCart = [...filteredCart];
+      newCart = [...filteredCart, productInCart];
     }
   }
+
+  return newCart;
 };
 
 export const getProducts = createAsyncThunk("product", async () => {
