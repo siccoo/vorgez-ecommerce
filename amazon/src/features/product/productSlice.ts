@@ -39,10 +39,22 @@ const modifyQtyByOne = (
   let newCart = [];
 
   if (!productInCart) {
-    previousCart.push({ ...selectedProduct, quantity: 1 })
+    previousCart.push({ ...selectedProduct, quantity: 1 });
     newCart = previousCart;
   } else {
-    const filteredCart = previousCart.filter(p => p._id !== productInCart._id);
+    const filteredCart = previousCart.filter(
+      (p) => p._id !== productInCart._id
+    );
+
+    const modification = modificationType === "INCREMENT" ? 1 : -1;
+
+    productInCart.quantity = productInCart.quantity + modification;
+
+    if (productInCart.quantity === 0) {
+      newCart = [...filteredCart];
+    } else {
+      newCart = [...filteredCart];
+    }
   }
 };
 
