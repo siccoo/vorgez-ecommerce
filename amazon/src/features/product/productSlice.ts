@@ -39,7 +39,10 @@ const modifyQtyByOne = (
   let newCart = [];
 
   if (!productInCart) {
-    previousCart.push({ ...selectedProduct, quantity: 1 });
+    previousCart.push({ ...selectedProduct, quantity: 1 })
+    newCart = previousCart;
+  } else {
+    const filteredCart = previousCart.filter(p => p._id !== productInCart._id);
   }
 };
 
