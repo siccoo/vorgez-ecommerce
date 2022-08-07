@@ -33,13 +33,13 @@ const HeaderComponent = () => {
         backgroundColor:
           '#131921', color: '#ffffff', padding: '4px'
       }}>
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
-          <img src="/vorgez-logo.png" alt="vorgez-logo" onClick={() => navigate('/')} style={{width: '113px', height: '50px', paddingTop: '10px', cursor: 'pointer'}}  />
-          <div style={{display: 'flex'}}>
-<div>
-  <div>Hello, {user?.name}</div>
-  <Button onClick={logoutHandler} sx={{padding: 0, marginRight: '10px'}}>Sign out</Button>
-</div>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <img src="/vorgez-logo.png" alt="vorgez-logo" onClick={() => navigate('/')} style={{ width: '113px', height: '50px', paddingTop: '10px', cursor: 'pointer' }} />
+          <div style={{ display: 'flex' }}>
+            <div>
+              <div>Hello, {user?.name}</div>
+              <Button onClick={logoutHandler} sx={{ padding: 0, marginRight: '16px', color: 'inherit' }}>Sign out</Button>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
