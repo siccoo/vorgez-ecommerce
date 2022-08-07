@@ -40,7 +40,7 @@ const HeaderComponent = () => {
               <div>Hello, {user?.name}</div>
               <Button onClick={logoutHandler} sx={{ padding: 0, marginRight: '16px', color: 'inherit' }}>Sign out</Button>
             </div>
-            <Button>
+            <Button onClick={() => navigate('/cart')}>
               <Badge badgeContent={cartCount} color="primary">
                 <ShoppingCartOutlinedIcon fontSize="large" />
               </Badge>
