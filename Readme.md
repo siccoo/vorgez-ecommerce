@@ -1,4 +1,4 @@
-# Vorgez Web app with React, Redux, NestJS, Mongo and Stripe
+# Vorgez Ecommerce Web app with React, Redux, NestJS, Mongo and Stripe
 
 The Mongo database uses **Docker**
 
