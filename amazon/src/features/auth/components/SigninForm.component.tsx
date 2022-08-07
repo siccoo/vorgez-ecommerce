@@ -122,7 +122,7 @@ const SigninFormComponent: FC = () => {
                                 marginTop: '16px',
                                 height: '31px',
                                 borderColor: "#a88734 #9c7e31 #846a29",
-                                backgroundColor: '#87cefa',
+                                backgroundColor: '#47A0F1',
                                 color: '#000000',
                                 textTransform: 'none'
                             }}

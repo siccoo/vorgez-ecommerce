@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { AppBar, Badge, Box, Button, Toolbar } from "@mui/material";
-// import { ShoppingBagOutlinedIcon } from "@mui/icons-material/ShoppingBagOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import { useNavigate } from "react-router-dom";
 import { logout, selectedUser } from "../../../features/auth/authSlice";
@@ -40,6 +40,12 @@ const HeaderComponent = () => {
               <div>Hello, {user?.name}</div>
               <Button onClick={logoutHandler} sx={{ padding: 0, marginRight: '16px', color: 'inherit' }}>Sign out</Button>
             </div>
+            <Button>
+              <Badge badgeContent={cartCount} color="primary">
+                <ShoppingCartOutlinedIcon fontSize="large" />
+              </Badge>
+              <span>Cart</span>
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
