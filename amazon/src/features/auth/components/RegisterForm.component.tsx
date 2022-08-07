@@ -160,13 +160,16 @@ const RegisterFormComponent: FC = () => {
             variant="outlined"
             size="small" />
 
-          <Button id='register-btn' variant='contained' style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#f0c14b', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
+          <Button 
+          id='register-btn' 
+          variant='contained' 
+          style={{ marginTop: '16px', height: '31px', borderColor: "#a88734 #9c7e31 #846a29", backgroundColor: '#87cefa', color: '#000000', textTransform: 'none' }} type='submit'>Register</Button>
         </Grid>
       </form>
 
       <div style={{ marginTop: '30px' }}>
         <small>
-          <span>By creating an account, you agree to Amazon's</span>
+          <span>By creating an account, you agree to Vorgez's</span>
         </small>
       </div>
 

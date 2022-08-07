@@ -122,7 +122,7 @@ const SigninFormComponent: FC = () => {
                                 marginTop: '16px',
                                 height: '31px',
                                 borderColor: "#a88734 #9c7e31 #846a29",
-                                backgroundColor: '#f0c14b',
+                                backgroundColor: '#87cefa',
                                 color: '#000000',
                                 textTransform: 'none'
                             }}
@@ -134,7 +134,7 @@ const SigninFormComponent: FC = () => {
 
                 <div style={{ marginTop: '30px' }}>
                     <small>
-                        <span>By continuing you agree to Amazon's</span>
+                        <span>By continuing you agree to Vorgez's</span>
                         <a href="#" style={{ textDecoration: 'none' }}>{' '}Conditions of use</a>{' '}
                         and {' '}
                         <a href="#" style={{ textDecoration: 'none' }}>Privacy policy</a>.
@@ -143,7 +143,7 @@ const SigninFormComponent: FC = () => {
             </Box>
             <div style={{ marginTop: "16px" }}>
                 <Divider>
-                    <small style={{ color: '#767676' }}>New to Amazon?</small>
+                    <small style={{ color: '#767676' }}>New to Vorgez?</small>
                 </Divider>
 
                 <Link id='register-link' to="/register" style={{ textDecoration: "none", color: "#0000ee" }}>
