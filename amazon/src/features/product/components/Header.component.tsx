@@ -1,17 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { logout, selectedUser } from "../../../features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux/hooks";
 
 const HeaderComponent = () => {
-  const dispatch = useAppDispatch();
 
   const { user } = useAppSelector(selectedUser);
+  const cart = useAppSelector((state) => state.product);
+
+  const [cartCount, setCartCount] = useState(0);
+
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(123, user);
-    
+    const totalQty = cart.reduce((acc: any, item: { quantity: any; }) => acc + item.quantity, 0);
   }, [user])
-  
+
 
   const logoutHandler = () => {
     dispatch(logout())
