@@ -51,7 +51,6 @@ const ProductComponent: FC<ProductComponentProps> = ({ product }) => {
                         );
                         dispatch(incrementProduct(product));
                     }}
-                    disabled={count === 0}
                     size="large"
                 >
                     +

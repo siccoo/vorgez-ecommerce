@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import HeaderComponent from "src/features/product/components/Header.component"
 import ProductComponent from "src/features/product/components/Product.component";
+import { getProducts } from "src/features/product/productSlice";
 import { useAppDispatch, useAppSelector } from "src/hooks/redux/hooks";
 
 const HomePage = () => {
   const { cart, products } = useAppSelector((state) => state.product);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+  
   return (
     <div>
       <HeaderComponent />
