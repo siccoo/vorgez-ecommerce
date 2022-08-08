@@ -18,7 +18,7 @@ const ProductComponent: FC<ProductComponentProps> = ({ product }) => {
             <CardMedia
                 component="img"
                 height="140"
-                image="https://via.placeholder.com/300.png/09f/fff"
+                image="https://via.placeholder.com/300/09f.png/ff"
                 alt="image"
             />
             <CardContent>

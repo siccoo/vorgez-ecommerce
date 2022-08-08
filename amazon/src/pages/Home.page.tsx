@@ -23,7 +23,7 @@ const HomePage = () => {
         gap: '48px',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '40px'
+        marginTop: '48px'
       }}
       >
         {products.length > 0 && products.map((product) => (
