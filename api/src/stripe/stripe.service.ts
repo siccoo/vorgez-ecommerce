@@ -11,4 +11,11 @@ export class StripeService {
       apiVersion: '2022-08-01',
     });
   }
+
+  checkout(cart: Cart) {
+    const totalPrice = cart.reduce(
+      (acc, item) => acc + item.quantity * item.price,
+      0,
+    );
+  }
 }
