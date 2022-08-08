@@ -17,5 +17,11 @@ export class StripeService {
       (acc, item) => acc + item.quantity * item.price,
       0,
     );
+
+    return this.stripe.paymentIntents.create({
+      amount: totalPrice * 100,
+      currency: 'USD',
+      payment_method_types: ['card'],
+    });
   }
 }
