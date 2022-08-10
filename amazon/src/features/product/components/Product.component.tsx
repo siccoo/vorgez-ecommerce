@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { ProductDocument } from '../models/Product';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@mui/material"
 import { useAppDispatch } from 'src/hooks/redux/hooks';
