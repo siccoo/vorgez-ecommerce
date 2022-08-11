@@ -27,17 +27,17 @@ const CartPage = () => {
                 ))}
             </div>
 
-            <div style={{width: '80%', margin: 'auto'}}>
-                <hr style={{marginTop: '16px'}} />
+            <div style={{ width: '80%', margin: 'auto' }}>
+                <hr style={{ marginTop: '16px' }} />
                 <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    fontSize: '20px'
-                }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        fontSize: '20px'
+                    }}
                 >
-                    <span style={{marginRight: '16px'}}>Subtotal ({totalQty}) items:</span>
-                    <span style={{marginBottom: '48px', fontWeight: 500}}>${totalPrice.toFixed(2)}</span>
+                    <span style={{ marginRight: '16px' }}>Subtotal ({totalQty}) items:</span>
+                    <span style={{ marginBottom: '48px', fontWeight: 500 }}>${totalPrice.toFixed(2)}</span>
                 </div>
             </div>
         </div>
