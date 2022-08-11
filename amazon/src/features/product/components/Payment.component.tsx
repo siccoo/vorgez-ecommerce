@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js"
@@ -27,9 +27,17 @@ const PaymentComponent = () => {
         dispatch(resetCart());
     })
 
+    const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if(totalQty === 0) return;
+
+        if(!stripe || !elements) return;
+    }
+
     return (
         <div style={{ fontSize: '20px' }}>
-            <form id="payment-form">
+            <form onSubmit={handleSubmit} id="payment-form">
                 <label htmlFor="card-element">Place order</label>
                 <CardElement id="card-element" />
                 {!isProcessing && (
