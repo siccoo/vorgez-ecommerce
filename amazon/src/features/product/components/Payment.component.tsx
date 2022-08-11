@@ -1,7 +1,23 @@
+import { useState } from "react";
+
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js"
+import { useAppDispatch, useAppSelector } from "src/hooks/redux/hooks";
+
 
 const PaymentComponent = () => {
+    const { cart } = useAppSelector((state) => state.product);
+
+    const dispatch = useAppDispatch();
+
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [paymentStatus, setPaymentStatus] = useState('');
+
+    const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    const stripe = useStripe();
+    const elements = useElements();
+
     return (
         <div>Payment.component</div>
     )
