@@ -36,8 +36,8 @@ const CartPage = () => {
                     fontSize: '20px'
                 }}
                 >
-                    <span></span>
-                    <span></span>
+                    <span style={{marginRight: '16px'}}>Subtotal ({totalQty}) items:</span>
+                    <span style={{marginBottom: '48px', fontWeight: 500}}>${totalPrice.toFixed(2)}</span>
                 </div>
             </div>
         </div>
