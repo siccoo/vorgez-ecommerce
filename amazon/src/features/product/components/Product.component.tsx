@@ -43,12 +43,12 @@ const ProductComponent: FC<ProductComponentProps> = ({ product }) => {
                     onClick={() => {
                         dispatch(decrementProduct(product));
                     }}
-                    disabled={count === 0}
+                    disabled={qty === 0}
                     size="large"
                 >
                     -
                 </Button>
-                <span>{count}</span>
+                <span>{qty}</span>
                 <Button
                     onClick={() => {
                         dispatch(incrementProduct(product));
