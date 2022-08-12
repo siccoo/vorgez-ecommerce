@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js"
 import { useAppDispatch, useAppSelector } from "src/hooks/redux/hooks";
 import { resetCart } from "../productSlice";
+import axios from "axios";
 
 
 const PaymentComponent = () => {
@@ -27,12 +28,38 @@ const PaymentComponent = () => {
         dispatch(resetCart());
     })
 
-    const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if(totalQty === 0) return;
+        if (totalQty === 0) return;
 
-        if(!stripe || !elements) return;
+        if (!stripe || !elements) return;
+
+        const cardEl = elements.getElement(CardElement);
+
+        setIsProcessing(true)
+
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_API}/stripe`, { cart });
+
+            const { client_secret: clientSecret } = res.data;
+
+            const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: cardEl!
+                }
+            });
+
+            if(!paymentIntent) {
+                setPaymentStatus('Payment failed!')
+            } else {
+                setPaymentStatus(paymentIntent.status);
+            }
+        } catch (error) {
+            console.log(error);
+            setPaymentStatus('Payment failed!')
+
+        }
     }
 
     return (
@@ -44,7 +71,7 @@ const PaymentComponent = () => {
                     <button
                         style={{
                             marginTop: '16px',
-                            height: '31px', 
+                            height: '31px',
                             border: 'none',
                             backgroundColor: '#47A0F1',
                             color: '#000000',
